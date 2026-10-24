@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+Copyright 2026 Csányi Pál
+
+This file is part of EquivRatioSolverPlus.
+
+EquivRatioSolverPlus is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+
+EquivRatioSolverPlus is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License along with EquivRatioSolverPlus. If not, see <https://www.gnu.org/licenses/>.
+-->
+
+<resources>
+    <string name="app_name">Aránypármegoldó +</string>
+    <string name="menu_home">Kezdőlap</string>
+    <string name="menu_manual">Kézikönyv</string>
+    <string name="menu_theory">Elmélet</string>
+    <string name="saved_ratios_title">Mentett arányosság visszaadása</string>
+    <string name="saved_ratios_empty">Még nincs mentett arányosság.</string>
+    <string name="store_ratio_title">Arányosság tárolása</string>
+    <string name="store_ratio_name_hint">Név</string>
+    <string name="store_ratio_name_required">Adj nevet ennek az arányosságnak.</string>
+    <string name="store_ratio_not_calculated">Az arányosság még nincs kiszámítva, ezért nem tárolható.</string>
+    <string name="store_ratio_saved">Arányosság tárolva.</string>
+    <string name="store_ratio_name_exists">Már létezik ilyen nevű arányosság.</string>
+    <string name="restore_ratio_title">Arányosság visszaadása</string>
+    <string name="store_button">Tárol</string>
+    <string name="restore_button">Betölt</string>
+    <string name="delete_all_button">Töröl</string>
+    <string name="menu_settings">Beállítások</string>
+    <string name="menu_privacy_policies">Adatvédelmi szabályzatok</string>
+    <string name="menu_software_license">Használati feltételek</string>
+    <string name="menu_donation">Adományozás</string>
+    <string name="menu_about">Névjegy</string>
+    <string name="menu_stop_app">Alkalmazást bezár</string>
+    <string name="donation_title">Adományozás</string>
+    <string name="donation_message">Ha hasznosnak találtad ezt az alkalmazást, kérjük, támogasd a szerzőt további munkájában.</string>
+    <string name="donation_button">Adományozás</string>
+    <string name="about_title">Az Equiv Ratio Solver Plus névjegye</string>
+    <string name="about_message">Egyenes és fordított arányosság számítása, az arányossági függvény grafikonját és tulajdonságait bemutató diagram, a kiszámított arányossági tényezők egyikének további matematikai feldolgozása, az eredmény mentése vagy elküldése, valamint átfogó útmutató az arányosság elméletéhez</string>
+    <string name="close_application_title">Alkalmazás bezárása</string>
+    <string name="close_application_message">Bezárod az alkalmazást? Az újbóli használatához újra el kell indítanod.</string>
+    <string name="change_proportionality_type">Arányosságfajta váltása</string>
+    <string name="change">Váltás</string>
+    <string name="attention">Figyelem!</string>
+    <string name="lose_proportionality_warning">Ezzel elveszíted ezt az arányosságot és minden adatát. Folytassam?</string>
+    <string name="cancel">Mégse</string>
+    <string name="yes">Igen</string>
+    <string name="direct_proportionality">Egyenes arányosság</string>
+    <string name="inverse_proportionality">Fordított arányosság</string>
+    <string name="language_settings">Alkalmazás nyelve</string>
+    <string name="language_english">Angol</string>
+    <string name="language_hungarian">Magyar</string>
+    <string name="settings_title">Beállítások</string>
+    <string name="settings_graph_decimal_places">A grafikon értékeinek tizedesjegyei</string>
+    <string name="settings_decimal_places">Tizedesjegyek száma</string>
+    <string name="settings_angle_format">A hajlásszög formátuma</string>
+    <string name="settings_angle_degrees">Fok</string>
+    <string name="settings_angle_degrees_minutes">Fok és szögperc</string>
+    <string name="settings_angle_degrees_minutes_seconds">Fok, szögperc és szögmásodperc</string>
+    <string name="settings_angle_radians">Radián</string>
+    <string name="startup_notice_title">Licencinformáció</string>
+    <string name="startup_notice_message">Copyright 2026 Csányi Pál. Az Aránypármegoldó + szabad szoftver, amely a GNU General Public License 3. vagy bármely későbbi verziója (GPLv3+) alatt érhető el. A szoftver e licenc feltételei szerint továbbadható és módosítható. A szoftver garancia nélkül biztosított. A teljes licenc az alkalmazáshoz mellékelt COPYING fájlban található.</string>
+    <string name="startup_notice_acknowledge">Rendben</string>
+    <string name="startup_notice_do_not_show_again">Ne jelenjen meg többé</string>
+    <string name="privacy_policy_notice">Copyright 2026 Pál Csányi\n\nAz Equiv Ratio Solver Plus szabad szoftver: a Free Software Foundation által kiadott GNU General Public License feltételei szerint terjeszthető és módosítható, a licenc 3. vagy bármely későbbi verziója alapján.\n\nAz Equiv Ratio Solver Plus abban a reményben kerül terjesztésre, hogy hasznos lesz, de MINDENFÉLE GARANCIA NÉLKÜL; ideértve az eladhatóságra vagy egy adott célra való alkalmasságra vonatkozó hallgatólagos garanciát is. További részletekért lásd a GNU General Public License szövegét.\n\nAz Equiv Ratio Solver Plus programmal együtt meg kellett kapnia a GNU General Public License egy példányát. Ha nem, látogassa meg ezt az oldalt: &lt;https://www.gnu.org/licenses/&gt;.</string>
+    <string name="privacy_policy">Adatvédelmi irányelv\n\nHatályos dátum: 2026.09.15.\n\nBevezetés\n\nKöszönjük, hogy használja az Aránypármegoldó +, angolul: Equiv Ratio Solver Plus alkalmazást.\n\nAdatgyűjtés és felhasználás\n\nAz alkalmazás nem gyűjt automatikusan és nem továbbít személyes vagy nem személyes felhasználói adatokat a fejlesztőnek vagy az alkalmazás szerverére. Az Ön által megadott és elmentett adatok, például az arányossági értékek, megjegyzések és beállítások, helyben, az eszközén tárolódnak. Az alkalmazáson belül mentett fájlok szintén az eszközére kerülnek. Az eszköz biztonsági mentésének működését az Android és az eszköz beállításai határozzák meg.\n\nAdatmegosztás és harmadik felek\n\nAz alkalmazás nem tartalmaz analitikai, reklám- vagy harmadik féltől származó követő szolgáltatást. Ha az alkalmazás Megosztás funkcióját választja, a kiválasztott tartalom átkerül az Android megosztási felületére, ahonnan az Ön által választott címzetthez vagy szolgáltatáshoz kerülhet. Külső hivatkozás, például a Wikipédia megnyitásakor az alkalmazás csatlakozik a kiválasztott webhelyhez. Ezeket a műveleteket Ön kezdeményezi; az alkalmazás ilyen tartalmat nem továbbít automatikusan.\n\nKapcsolat\n\nHa bármilyen kérdése vagy észrevétele van, kérjük, vegye fel velünk a kapcsolatot:\nmailto:scaynialp@gmail.com\n\nAz irányelv módosítása\n\nEz az adatvédelmi irányelv szükség esetén frissítésre kerül. A módosításokat az alkalmazáson belül tesszük közzé.</string>
+    <string name="privacy_policy_heading">Adatvédelmi irányelv</string>
+    <string name="privacy_policy_introduction">Bevezetés</string>
+    <string name="privacy_policy_data_collection">Adatgyűjtés és felhasználás</string>
+    <string name="privacy_policy_data_sharing">Adatmegosztás és harmadik felek</string>
+    <string name="privacy_policy_contact">Kapcsolat</string>
+    <string name="privacy_policy_changes">Az irányelv módosítása</string>
+    <string name="y1_hint">y₁ = valós szám ≠ 0</string>
+    <string name="x1_hint">x₁ = valós szám ≠ 0</string>
+    <string name="y2_hint">y₂ = valós szám ≠ 0</string>
+    <string name="x2_hint">x₂ = valós szám ≠ 0</string>
+    <string name="navigation_data">Adatok</string>
+    <string name="navigation_graph">Grafikon</string>
+    <string name="navigation_result">Eredmény</string>
+    <string name="navigation_operation">Művelet</string>
+    <string name="operation_title">Matematikai művelet a kiszámolt arányosság egyik változóján</string>
+    <string name="operation_number_hint">valós szám ≠ 0</string>
+    <string name="operation_note_hint">jegyzet</string>
+    <string name="operation_send">Küldés</string>
+    <string name="operation_save">Mentés</string>
+    <string name="operation_saved">Az eredmény mentve a Dokumentumokba</string>
+    <string name="operation_save_failed">Az eredmény mentése sikertelen</string>
+    <string name="results_saved">Az eredmény mentve a Dokumentumokba</string>
+    <string name="results_save_failed">Az eredmény mentése sikertelen</string>
+    <string name="graph_saved">A grafikon mentve</string>
+    <string name="graph_save_failed">A grafikon mentése sikertelen</string>
+    <string name="graph_not_ready">A grafikon még nem áll készen a mentésre</string>
+    <string name="result_enter_values">Az Adatok képernyőn add meg az aránypár értékeit, hogy megkapd az eredményt.</string>
+    <string name="result_notes_title">Jegyzetek az arányosság változóihoz</string>
+    <string name="result_comment_y">y₁ és y₂ jegyzete</string>
+    <string name="result_comment_x">x₁ és x₂ jegyzete</string>
+    <string name="graph_enter_values">Adj meg egy aránypárt a grafikon megjelenítéséhez.</string>
+    <string name="short_help">Három szám beírásával és a beviteli mezőben az Enter megnyomásával megkapod az aránypár eddig ismeretlen negyedik számát.\n\nAz utolsó üresen hagyott beviteli mező értéke kerül kiszámításra.\n\nA beviteli mezőben Enter -t érintve a fókusz a következő beviteli mezőre kerül.\n\nAz [x] gomb törli ezt a számot, míg a [Töröl] gomb egyszerre az összes számot.\n\nA képernyő váltásához használd az alsó navigációs sávot.</string>
+    <string name="hide_help_description">Elrejti az alábbi súgót.</string>
+    <string name="entering_data_and_comments">Adatok szerkesztése és számítások</string>
+    <string name="save_graph_to_gallery">Grafikon mentése</string>
+    <string name="results_send">Küldés</string>
+    <string name="results_save">Mentés</string>
+    <string name="close">Bezárás</string>
+</resources>

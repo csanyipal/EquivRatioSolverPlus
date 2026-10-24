@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="hu">
+    <head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+	<style>
+
+	  /* Képkeret*/
+	  .grafikon {
+	      border: 5px solid #555;
+		     }
+
+	 /* A teljes oldal stílusa */
+	 body, html {
+	     margin: 5px;
+	     padding: 2px;
+	     /* Középre igazítom a képet. */
+	     /*display: flex; Ez egyetlen sorban jelenít meg mindent.*/
+	     justify-content: center;
+	     align-items: center;
+	     min-height: 100vh;
+	     background-color: #f0f0f0;
+	     color: black;
+	 }
+
+
+	 /* For dark mode */
+	 @media (prefers-color-scheme: dark) {
+	     .szoveg01-egyenes-aranyossag-kepen,
+	     .szoveg02-egyenes-aranyossag-kepen,
+	     .szoveg03-egyenes-aranyossag-kepen,
+	     .szoveg04-egyenes-aranyossag-kepen,
+	     .szoveg05-egyenes-aranyossag-kepen
+	     {
+		 color: black; /* Change text color to black. */
+	     }
+	 }
+
+	 
+	 /* A kép kerete - RÖGZÍTETT MÉRET */ 
+         .egyenes-aranyossag-kepkerete {
+	     position: relative;
+	     width: 600px; /* Ennyi a kép valódi szélessége. */
+	     height: 328px; /* Ennyi a kép valódi magassága. */
+	     overflow: hidden; /* Ha bármi kilógna, ne látszódjon. */
+	 }
+
+	 /* Maga a kép */
+	 .egyenes-aranyossag-kepkerete img {
+	     display: block;
+	     width: 600px;
+	     height: 328px;
+	     object-fit: contain; /* Vagy cover, ha torzulhat. */
+	 }
+
+         .szoveg01-egyenes-aranyossag-kepen { /* PÉLDA EGYENES ARÁNYOSSÁGRA */
+	     position: absolute;
+             top: 22px; /* függőlegesen */
+             left: 140px; /* vízszintesen */
+             font-size: 14px;
+             font-weight: bold;
+	 }
+
+         .szoveg02-egyenes-aranyossag-kepen { /* ÚTHOSSZ ÉS FOGYASZTÁS */
+	     position: absolute;
+             top: 45px; /* függőlegesen */
+             left: 175px; /* vízszintesen */
+             font-size: 11px;
+             font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg03-egyenes-aranyossag-kepen { /* HOSSZABB ÚTON */
+	     position: absolute;
+             top: 70px; /* függőlegesen */
+             left: 238px; /* vízszintesen */
+             font-size: 8px;
+	     font-weight: normal;
+	     /* color: orange; */
+         }
+
+         .szoveg04-egyenes-aranyossag-kepen { /* TÖBB ÜZEMANYAG FOGY */
+	     position: absolute;
+             top: 80px; /* függőlegesen */
+             left: 238px; /* vízszintesen */
+             font-size: 8px;
+	     font-weight: normal;
+	     /* color: orange; */
+         }
+
+         .szoveg05-egyenes-aranyossag-kepen { /* AZONOS SEBESSÉGGEL. */
+	     position: absolute;
+             top: 143px; /* függőlegesen */
+             left: 245px; /* vízszintesen */
+             font-size: 8px;
+	     font-weight: normal;
+	     /* color: orange; */
+         }
+
+         .szoveg06-egyenes-aranyossag-kepen { /* MATEMATIKAI LEVEZETÉS */
+	     position: absolute;
+             top: 170px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg07-egyenes-aranyossag-kepen { /* 100 km távon a fogyasztás 6.2 liter. */
+	     position: absolute;
+             top: 186px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg08-egyenes-aranyossag-kepen { /* 155 km távon hány liter fogyna el? */
+	     position: absolute;
+             top: 198px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg09-egyenes-aranyossag-kepen { /* t1 : f1 = t2 : f2 = állandó, f2=? */
+	     position: absolute;
+             top: 210px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg10-egyenes-aranyossag-kepen { /* 100 km : 6,2 l = 155 km : f2 l */
+	     position: absolute;
+             top: 222px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg11-egyenes-aranyossag-kepen { /* f2 = 6,2 l ⋅ 155 km : 100 km */
+	     position: absolute;
+             top: 234px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg12-egyenes-aranyossag-kepen { /* f2 = 9,61 liter */
+	     position: absolute;
+             top: 246px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg13-egyenes-aranyossag-kepen { /* 155 km TÁVON */
+	     position: absolute;
+             top: 266px; /* függőlegesen */
+             left: 242px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg14-egyenes-aranyossag-kepen { /* A FOGYASZTÁS 9.61 LITER. */
+	     position: absolute;
+             top: 276px; /* függőlegesen */
+             left: 242px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg15-egyenes-aranyossag-kepen { /* ÚTHOSSZ ÉS FOGYASZTÁS HÁNYADOSA ÁLLANDÓ. */
+	     position: absolute;
+             top: 305px; /* függőlegesen */
+             left: 145px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+	     /* text-shadow: 2px 2px 4px rgba(0,0,0,0.5);*/
+         }
+
+         .szoveg16-egyenes-aranyossag-kepen { /* RÖVIDEBB ÚTON */
+	     position: absolute;
+             top: 70px; /* függőlegesen */
+             left: 45px; /* vízszintesen */
+             font-size: 10px;
+	     font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg17-egyenes-aranyossag-kepen { /* 100 km */
+	     position: absolute;
+             top: 140px; /* függőlegesen */
+             left: 55px; /* vízszintesen */
+             font-size: 10px;
+	     font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg18-egyenes-aranyossag-kepen { /* 6,2 liter */
+	     position: absolute;
+             top: 160px; /* függőlegesen */
+             left: 130px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg19-egyenes-aranyossag-kepen { /* átlagsebességem */
+	     position: absolute;
+             top: 220px; /* függőlegesen */
+             left: 42px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg20-egyenes-aranyossag-kepen { /* 58 km/ó */
+	     position: absolute;
+             top: 230px; /* függőlegesen */
+             left: 42px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg21-egyenes-aranyossag-kepen { /* HOSSZABB ÚTON */
+	     position: absolute;
+             top: 70px; /* függőlegesen */
+             left: 408px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg22-egyenes-aranyossag-kepen { /* 155 km */
+	     position: absolute;
+             top: 140px; /* függőlegesen */
+             left: 415px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg23-egyenes-aranyossag-kepen { /* ? liter */
+	     position: absolute;
+             top: 160px; /* függőlegesen */
+             left: 490px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+	     /* color: orange; */
+         }
+
+         .szoveg24-egyenes-aranyossag-kepen { /* átlagsebességem */
+	     position: absolute;
+             top: 220px; /* függőlegesen */
+             left: 403px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .szoveg25-egyenes-aranyossag-kepen { /* 58 km/ó */
+	     position: absolute;
+             top: 230px; /* függőlegesen */
+             left: 403px; /* vízszintesen */
+             font-size: 10px;
+	     /* color: orange; */
+         }
+
+         .forditott-aranyossag-kepkerete {
+             position: relative;
+	     width: 600px;
+	     height: 328px;
+	     overflow: hidden;
+         }
+
+	 /* Maga a kép */
+	 .forditott-aranyossag-kepkerete img {
+	     display: block;
+	     width: 600px;
+	     height: 328px;
+	     object-fit: contain; /* Vagy cover, ha torzulhat. */
+	 }
+	 
+         .szoveg01-forditott-aranyossag-kepen { /* példa fordított arányosságra */
+	     position: absolute;
+             top: 22px; /* függőlegesen */
+             left: 140px; /* vízszintesen */
+             font-size: 12px;
+             font-weight: bold;
+         }
+
+         .szoveg02-forditott-aranyossag-kepen { /* UTAZÁSI IDŐ ÉS SEBESSÉG */
+	     position: absolute;
+             top: 45px; /* függőlegesen */
+             left: 175px; /* vízszintesen */
+             font-size: 11px;
+             font-weight: bold;
+         }
+
+         .szoveg03-forditott-aranyossag-kepen { /* GYORSABBAN HALADVA */
+	     position: absolute;
+             top: 70px; /* függőlegesen */
+             left: 238px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg04-forditott-aranyossag-kepen { /* HAMARABB ODAÉR */
+	     position: absolute;
+             top: 80px; /* függőlegesen */
+             left: 238px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg05-forditott-aranyossag-kepen { /* UGYANAZON AZ ÚTON. */
+	     position: absolute;
+             top: 143px; /* függőlegesen */
+             left: 245px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg06-forditott-aranyossag-kepen { /* MATEMATIKAI LEVEZETÉS */
+	     position: absolute;
+             top: 170px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+         }
+
+         .szoveg07-forditott-aranyossag-kepen { /* S1=80 km/ó sebesen T1=1 óra alatt, */
+	     position: absolute;
+             top: 186px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg08-forditott-aranyossag-kepen { /* S2=90 km/ó sebesen hány óra alatt? */
+	     position: absolute;
+             top: 198px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg09-forditott-aranyossag-kepen { /* S1 ⋅ T1 = S2 ⋅ T2 = állandó, T2=? */
+	     position: absolute;
+             top: 210px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg10-forditott-aranyossag-kepen { /* 80 ⋅ 1 = 90 ⋅ T2 */
+	     position: absolute;
+             top: 222px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg11-forditott-aranyossag-kepen { /* T2 = 80 : 90 ≈ 0,88888 óra */
+	     position: absolute;
+             top: 234px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg12-forditott-aranyossag-kepen { /* T2 ≈ 53 perc 20 másodperc */
+	     position: absolute;
+             top: 246px; /* függőlegesen */
+             left: 220px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg13-forditott-aranyossag-kepen { /* GYORSABBAN HALADVA */
+	     position: absolute;
+             top: 266px; /* függőlegesen */
+             left: 242px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg14-forditott-aranyossag-kepen { /* AZ ÚT 53 PERCIG TART. */
+	     position: absolute;
+             top: 276px; /* függőlegesen */
+             left: 242px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg15-forditott-aranyossag-kepen { /* SEBESSÉG ÉS IDŐ SZORZATA ÁLLANDÓ. */
+	     position: absolute;
+             top: 305px; /* függőlegesen */
+             left: 145px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg16-forditott-aranyossag-kepen { /* 80 km-t LASSABBAN */
+	     position: absolute;
+             top: 70px; /* függőlegesen */
+             left: 45px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+         }
+
+         .szoveg17-forditott-aranyossag-kepen { /* 80 km/ó */
+	     position: absolute;
+             top: 155px; /* függőlegesen */
+             left: 60px; /* vízszintesen */
+             font-size: 10px;
+	     font-weight: bold;
+         }
+
+         .szoveg18-forditott-aranyossag-kepen { /* 60 perc alatt */
+	     position: absolute;
+             top: 155px; /* függőlegesen */
+             left: 140px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+         }
+
+         .szoveg19-forditott-aranyossag-kepen { /* Az út hossza */
+	     position: absolute;
+             top: 220px; /* függőlegesen */
+             left: 60px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg20-forditott-aranyossag-kepen { /* 80 km. */
+	     position: absolute;
+             top: 230px; /* függőlegesen */
+             left: 60px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg21-forditott-aranyossag-kepen { /* 80 km-t GYORSABBAN */
+	     position: absolute;
+             top: 70px; /* függőlegesen */
+             left: 408px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+         }
+
+         .szoveg22-forditott-aranyossag-kepen { /* 90 km/ó */
+	     position: absolute;
+             top: 155px; /* függőlegesen */
+             left: 420px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+         }
+
+         .szoveg23-forditott-aranyossag-kepen { /* ? perc alatt */
+	     position: absolute;
+             top: 155px; /* függőlegesen */
+             left: 500px; /* vízszintesen */
+             font-size: 10px;
+             font-weight: bold;
+         }
+
+         .szoveg24-forditott-aranyossag-kepen { /* Az út hossza*/
+	     position: absolute;
+             top: 220px; /* függőlegesen */
+             left: 420px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+         .szoveg25-forditott-aranyossag-kepen { /* 80 km. */
+	     position: absolute;
+             top: 230px; /* függőlegesen */
+             left: 420px; /* vízszintesen */
+             font-size: 10px;
+         }
+
+	</style>
+    </head>
+    <body>
+	<h1>DIRECT AND INVERSE PROPORTIONALITY</h1>
+	<h2>Direct Proportionality</h2>
+	<p><em><b>Direct proportionality describes the relationship between two quantities that vary together.</b></em></p>
+	<p><b>In mathematics, we say that two quantities—which vary together—are directly proportional if <u>their ratio is constant</u>.</b></p>
+	<p>Let's say one quantity is six and the other is three.</p>
+	<p>The quotient of these two quantities is two, that is, 6/3=2.</p>
+	<p>If we increase six to twelve, then—in order for the quotient of the two numbers to remain constant, that is, to remain two—we must also increase the other number, three: (6+6)/(3+3)=12/6=2. Six became twelve, and three became six, so the quotient remained constant—that is, it remained two.</p>
+	<p>The formula for direct proportionality: <b>y</b><sub>1</sub> / <b>x</b><sub>1</sub>=<b>y</b><sub>2</sub> / <b>x</b><sub>2</sub>. This formula is also called a ratio pair.</p>
+	<p>If we know three variables in a pair of ratios, we can find the value of the fourth variable using one of the following formulas (depending on which three of the four variables are known):<br/><b>y</b><sub>1</sub>=<b>x</b><sub>1</sub><b>y</b><sub>2</sub> / <b>x</b><sub>2</sub> (where <b>x</b><sub>2</sub> cannot be zero),<br/><b>x</b><sub>1</sub>=<b>y</b><sub>1</sub><b>x</b><sub>2</sub> / <b>y</b><sub>2</sub>(where <b>y</b><sub>2</sub> cannot be zero),<br/><b>y</b><sub>2</sub>=<b>y</b><sub>1</sub><b>x</b><sub>2</sub> / <b>x</b><sub>1</sub> (where <b>x</b><sub>1</sub> cannot be zero),<br/><b>x</b><sub>2</sub>=<b>x</b><sub>1</sub><b>y</b><sub>2</sub> / <b>y</b><sub>1</sub> (where <b>y</b><sub>1</sub> cannot be zero).</p>
+	<p><i><b>If the quantities can be any </b></i><i><u><b>real</b></u></i> <i><b>numbers, then the graph of this function is a </b></i><i><u><b>line passing through the origin</b></u></i> <i><b>:</b></i></p>
+	<p>If the ratio of the two quantities is positive, then the line lies in the first and third quadrants; if this ratio is negative, then it lies in the second and fourth quadrants:</p>
+	<img class='grafikon' src="egyenesAranyossagPozitiv.png" alt="Graph of Positive Linear Proportionality">
+	<br>
+	<img class='grafikon' src="egyenesAranyossagNegativ.png" alt="Graph of Negative Direct Proportionality">
+	<p>You can read more about direct proportionality at <a href="https://en.wikipedia.org/wiki/Proportionality_(mathematics)">Wikipedia</a>.
+	<p><i>Direct proportionality can be applied in everyday life. See an example below!</i></p>
+	<div class="egyenes-aranyossag-kepkerete">
+	    <img src="PeldaEgyenesAranyossagraSzovegNelkul.png" alt="Example of Direct Proportionality (Picture)">
+	    <div class="szoveg01-egyenes-aranyossag-kepen">EXAMPLE OF DIRECT PROPORTIONALITY</div>
+            <div class="szoveg02-egyenes-aranyossag-kepen">DRIVING DISTANCE AND FUEL CONSUMPTION</div>
+	    <div class="szoveg03-egyenes-aranyossag-kepen">ON A LONGER JOURNEY</div>
+	    <div class="szoveg04-egyenes-aranyossag-kepen">HIGHER FUEL CONSUMPTION</div>
+	    <div class="szoveg05-egyenes-aranyossag-kepen">AT THE SAME SPEED.</div>
+	    <div class="szoveg06-egyenes-aranyossag-kepen">MATHEMATICAL DERIVATION</div>
+	    <div class="szoveg07-egyenes-aranyossag-kepen">Fuel consumption is 6.2 gal/100 mi.</div>
+	    <div class="szoveg08-egyenes-aranyossag-kepen">How many gal would 155 mi need?</div>
+	    <div class="szoveg09-egyenes-aranyossag-kepen">T1 / F1 = T2 / F2 = constant, F2 = ?</div>
+	    <div class="szoveg10-egyenes-aranyossag-kepen">100 mi / 6.2 gal = 155 mi / F2 gal</div>
+	    <div class="szoveg11-egyenes-aranyossag-kepen">F2 = 6,2 gal × 155 mi / 100 mi</div>
+	    <div class="szoveg12-egyenes-aranyossag-kepen">F2 = 9.61 gallons</div>
+	    <div class="szoveg13-egyenes-aranyossag-kepen">AT A DISTANCE OF 155 mi</div>
+	    <div class="szoveg14-egyenes-aranyossag-kepen">FUEL CONSUMPTION: 9.61 GAL.</div>
+	    <div class="szoveg15-egyenes-aranyossag-kepen">THE RATIO OF DISTANCE TO FUEL CONSUMPTION IS CONSTANT.</div>
+	    <div class="szoveg16-egyenes-aranyossag-kepen">ON A SHORTER ROUTE</div>
+	    <div class="szoveg17-egyenes-aranyossag-kepen">100 mi</div>
+	    <div class="szoveg18-egyenes-aranyossag-kepen">6,2 gallons</div>
+	    <div class="szoveg19-egyenes-aranyossag-kepen">My average speed</div>
+	    <div class="szoveg20-egyenes-aranyossag-kepen">58 mi/h</div>
+	    <div class="szoveg21-egyenes-aranyossag-kepen">ON A LONGER ROUTE</div>
+	    <div class="szoveg22-egyenes-aranyossag-kepen">155 mi</div>
+	    <div class="szoveg23-egyenes-aranyossag-kepen">? gallons</div>
+	    <div class="szoveg24-egyenes-aranyossag-kepen">My average speed</div>
+	    <div class="szoveg25-egyenes-aranyossag-kepen">58 mi/h</div>
+	</div>
+	<p><i>If a car consumes an average of 6.2 gallons of gas over a distance of 100 mi, how many gallons would it consume over a distance of 147 mi? Using the formulas above:</i></p>
+	<p><i><b>y</b><sub>1</sub>=100 mi</i></p>
+	<p><i><b>x</b><sub>1</sub>=6,2 gal</i></p>
+	<p><i><b>y</b><sub>2</sub>=147 mi</i></p>
+	<p><i><b>x</b><sub>2</sub>=<b>x</b><sub>1</sub><b>y</b><sub>2</sub> / <b>y</b><sub>1</sub></i></p>
+	<p><i><b>x</b><sub>2</sub>=6,2×147 / 100=9,114 gallons.</i></p>
+	<h2>Inverse proportionality</h2>
+	<p><i><b>Inverse proportionality describes the relationship between two quantities that vary together.</b></i></p>
+	<p><b>In mathematics, we say that two quantities—which vary together—are inversely proportional if </b><u><b>their product is constant</b></u><b>.</b></p>
+	<p>Let's say one quantity is six and the other is three.</p>
+	<p>The product of these two quantities is eighteen, that is, 6×3=18.</p>
+	<p>If we increase the six to nine, then—so that the product of the two numbers remains constant, that is, eighteen—we must decrease the other number, the three: (6+3)×(3-1)=9×2=18. Six became nine, and three became two, so the product remained constant—that is, eighteen.</p>
+	<p>The formula for inverse proportionality: <b>y</b><sub>1</sub><b>x</b><sub>1</sub>=<b>y</b><sub>2</sub><b>x</b><sub>2</sub>.</p>
+	<p>If we know three of the variables in this formula, we can find the value of the fourth variable using one of the following formulas (depending on which three of the four variables are known):<br/><b>y</b><sub>1</sub>=<b>y</b><sub>2</sub><b>x</b><sub>2</sub> / <b>x</b><sub>1</sub>, <br/><b>x</b><sub>1</sub>=<b>y</b><sub>2</sub><b>x</b><sub>2</sub> / <b>y</b><sub>1</sub>, <br/><b>y</b><sub>2</sub>=<b>y</b><sub>1</sub><b>x</b><sub>1</sub> / <b>x</b><sub>2</sub>, <br/><b>x</b><sub>2</sub>=<b>y</b><sub>1</sub><b>x</b><sub>1</sub> / <b>y</b><sub>2</sub>,</p>
+	<p>where the values of <b>y</b><sub>1</sub>, <b>x</b><sub>1</sub>, <b>y</b><sub>2</sub>, and <b>x</b><sub>2</sub> cannot be zero.</p>
+	<p><i><b>If the quantities can be any <u>real</u> numbers other than zero, then this function can be represented by a <u>hyperbola</u>. If the product of the two quantities is positive, then the branches of the hyperbola lie in the first and third quadrants; if this product is negative, then they lie in the second and fourth quadrants: </b></i></font></p>
+	<img class='grafikon' src="forditottAranyossagPozitiv.png" alt="Graph of Positive Inverse Proportionality">
+	<br>
+	<img class='grafikon' src="forditottAranyossagNegativ.png" alt="Graph of Negative Inverse Proportionality">
+<p>You can read more about inverse proportionality on <a href="https://en.wikipedia.org/wiki/Proportionality_(mathematics)#Inverse_proportionality">Wikipedia</a>.
+	<p><i>Inverse proportionality can be applied in everyday life.</i></p> See an example below!</i></p>
+	<div class="forditott-aranyossag-kepkerete">
+	    <img src="PeldaForditottAranyossagraSzovegNelkul.png" alt="Example of Inverse Proportionality (Picture)">
+	    <div class="szoveg01-forditott-aranyossag-kepen">EXAMPLE OF INVERSE PROPORTIONALITY</div>
+	    <div class="szoveg02-forditott-aranyossag-kepen">TRAVEL TIME AND SPEED</div>
+	    <div class="szoveg03-forditott-aranyossag-kepen">MOVING FASTER</div>
+	    <div class="szoveg04-forditott-aranyossag-kepen">GET THERE SOONER</div>
+	    <div class="szoveg05-forditott-aranyossag-kepen">ON THE SAME PATH.</div>
+	    <div class="szoveg06-forditott-aranyossag-kepen">MATHEMATICAL DERIVATION</div>
+	    <div class="szoveg07-forditott-aranyossag-kepen">S1 = 80 mph in T1 = 1 hour,</div>
+	    <div class="szoveg08-forditott-aranyossag-kepen">At 90 mph, how many hours for S2?</div>
+	    <div class="szoveg09-forditott-aranyossag-kepen">S1 ⋅ T1 = S2 ⋅ T2 = constant, T2=?</div>
+	    <div class="szoveg10-forditott-aranyossag-kepen">80 ⋅ 1 = 90 ⋅ T2</div>
+	    <div class="szoveg11-forditott-aranyossag-kepen">T2 = 80 / 90 ≈ 0.88888 hours</div>
+	    <div class="szoveg12-forditott-aranyossag-kepen">T2 ≈ 53 minutes 20 seconds</div>
+	    <div class="szoveg13-forditott-aranyossag-kepen">MOVING FASTER</div>
+	    <div class="szoveg14-forditott-aranyossag-kepen">THE TRIP TAKES 53 MINUTES.</div>
+	    <div class="szoveg15-forditott-aranyossag-kepen">THE PRODUCT OF SPEED AND TIME IS CONSTANT.</div>
+	    <div class="szoveg16-forditott-aranyossag-kepen">Travels 80 miles SLOWER</div>
+	    <div class="szoveg17-forditott-aranyossag-kepen">80 mph</div>
+	    <div class="szoveg18-forditott-aranyossag-kepen">in 60 minutes</div>
+	    <div class="szoveg19-forditott-aranyossag-kepen">Road length:</div>
+	    <div class="szoveg20-forditott-aranyossag-kepen">80 mi.</div>
+	    <div class="szoveg21-forditott-aranyossag-kepen">Travels 80 miles FASTER"</div>
+	    <div class="szoveg22-forditott-aranyossag-kepen">90 mph</div>
+	    <div class="szoveg23-forditott-aranyossag-kepen">in ? minutes</div>
+	    <div class="szoveg24-forditott-aranyossag-kepen">Road length:</div>
+	    <div class="szoveg25-forditott-aranyossag-kepen">80 mi.</div>
+	</div>
+	<p><i>If a car travels a certain distance in 1 hour at a speed of 80 mph, how many hours will it take to travel the same distance at a speed of 90 mph? Using the formulas above:</i></p>
+	<p><i><b>y</b><sub>1</sub>=80 mph</i></p>
+	<p><i><b>x</b><sub>1</sub>=1 h</i></p>
+	<p><i><b>y</b><sub>2</sub>=90 mph</i></p>
+	<p><i><b>x</b><sub>2</sub>=<b>y</b><sub>1</sub><b>x</b><sub>1</sub> / <b>y</b><sub>2</sub></i></p>
+	<p><b>x</b><sub>2</sub>=80×1/90=0.88888 h.</p>
+    </body>
+</html>

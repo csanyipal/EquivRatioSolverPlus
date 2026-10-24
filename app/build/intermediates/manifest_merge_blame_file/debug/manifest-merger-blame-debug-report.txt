@@ -1,0 +1,150 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<!--
+3Copyright 2026 Csányi Pál
+4
+5This file is part of EquivRatioSolverPlus.
+6
+7EquivRatioSolverPlus is free software: you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version.
+8
+9EquivRatioSolverPlus is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+10
+11You should have received a copy of the GNU General Public License along with EquivRatioSolverPlus. If not, see <https://www.gnu.org/licenses/>.
+12-->
+13<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+14    package="io.github.csanyipal.equivratiosolverplus"
+15    android:versionCode="1"
+16    android:versionName="1.0" >
+17
+18    <uses-sdk
+19        android:minSdkVersion="26"
+20        android:targetSdkVersion="34" />
+21
+22    <permission
+22-->[androidx.core:core:1.12.0] /home/csanyipal/.gradle/caches/transforms-3/590fb361004eaee53daba3819da1e86f/transformed/core-1.12.0/AndroidManifest.xml:22:5-24:47
+23        android:name="io.github.csanyipal.equivratiosolverplus.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION"
+23-->[androidx.core:core:1.12.0] /home/csanyipal/.gradle/caches/transforms-3/590fb361004eaee53daba3819da1e86f/transformed/core-1.12.0/AndroidManifest.xml:23:9-81
+24        android:protectionLevel="signature" />
+24-->[androidx.core:core:1.12.0] /home/csanyipal/.gradle/caches/transforms-3/590fb361004eaee53daba3819da1e86f/transformed/core-1.12.0/AndroidManifest.xml:24:9-44
+25
+26    <uses-permission android:name="io.github.csanyipal.equivratiosolverplus.DYNAMIC_RECEIVER_NOT_EXPORTED_PERMISSION" />
+26-->[androidx.core:core:1.12.0] /home/csanyipal/.gradle/caches/transforms-3/590fb361004eaee53daba3819da1e86f/transformed/core-1.12.0/AndroidManifest.xml:26:5-97
+26-->[androidx.core:core:1.12.0] /home/csanyipal/.gradle/caches/transforms-3/590fb361004eaee53daba3819da1e86f/transformed/core-1.12.0/AndroidManifest.xml:26:22-94
+27
+28    <application
+28-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:16:5-34:19
+29        android:allowBackup="true"
+29-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:17:9-35
+30        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+30-->[androidx.core:core:1.12.0] /home/csanyipal/.gradle/caches/transforms-3/590fb361004eaee53daba3819da1e86f/transformed/core-1.12.0/AndroidManifest.xml:28:18-86
+31        android:debuggable="true"
+32        android:extractNativeLibs="false"
+33        android:icon="@mipmap/ic_launcher"
+33-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:18:9-43
+34        android:label="@string/app_name"
+34-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:20:9-41
+35        android:roundIcon="@mipmap/ic_launcher_round"
+35-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:19:9-54
+36        android:supportsRtl="true"
+36-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:21:9-35
+37        android:theme="@style/Theme.EquivRatioSolverPlus" >
+37-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:22:9-58
+38        <activity
+38-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:24:9-33:20
+39            android:name="io.github.csanyipal.equivratiosolverplus.MainActivity"
+39-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:25:13-41
+40            android:exported="true"
+40-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:26:13-36
+41            android:theme="@style/Theme.EquivRatioSolverPlus" >
+41-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:27:13-62
+42            <intent-filter>
+42-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:28:13-32:29
+43                <action android:name="android.intent.action.MAIN" />
+43-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:29:17-69
+43-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:29:25-66
+44
+45                <category android:name="android.intent.category.LAUNCHER" />
+45-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:30:17-31:51
+45-->/home/csanyipal/Dokumentumok/Programozasaim/Android/AppFejlesztesEmacsbanKotlinnal/Tervezetem/EquivRatioSolverPlus/app/src/main/AndroidManifest.xml:31:1-48
+46            </intent-filter>
+47        </activity>
+48        <activity
+48-->[androidx.compose.ui:ui-test-manifest:1.5.4] /home/csanyipal/.gradle/caches/transforms-3/3d8223a54eabc8532b1c631e70274d1e/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:23:9-25:39
+49            android:name="androidx.activity.ComponentActivity"
+49-->[androidx.compose.ui:ui-test-manifest:1.5.4] /home/csanyipal/.gradle/caches/transforms-3/3d8223a54eabc8532b1c631e70274d1e/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:24:13-63
+50            android:exported="true" />
+50-->[androidx.compose.ui:ui-test-manifest:1.5.4] /home/csanyipal/.gradle/caches/transforms-3/3d8223a54eabc8532b1c631e70274d1e/transformed/ui-test-manifest-1.5.4/AndroidManifest.xml:25:13-36
+51        <activity
+51-->[androidx.compose.ui:ui-tooling-android:1.5.4] /home/csanyipal/.gradle/caches/transforms-3/a05f69b776c0fac85f87a7a1fe7e283f/transformed/ui-tooling-release/AndroidManifest.xml:23:9-25:39
+52            android:name="androidx.compose.ui.tooling.PreviewActivity"
+52-->[androidx.compose.ui:ui-tooling-android:1.5.4] /home/csanyipal/.gradle/caches/transforms-3/a05f69b776c0fac85f87a7a1fe7e283f/transformed/ui-tooling-release/AndroidManifest.xml:24:13-71
+53            android:exported="true" />
+53-->[androidx.compose.ui:ui-tooling-android:1.5.4] /home/csanyipal/.gradle/caches/transforms-3/a05f69b776c0fac85f87a7a1fe7e283f/transformed/ui-tooling-release/AndroidManifest.xml:25:13-36
+54
+55        <provider
+55-->[androidx.emoji2:emoji2:1.4.0] /home/csanyipal/.gradle/caches/transforms-3/fd6db1ec5ad0f9b078042f033e9f3927/transformed/emoji2-1.4.0/AndroidManifest.xml:24:9-32:20
+56            android:name="androidx.startup.InitializationProvider"
+56-->[androidx.emoji2:emoji2:1.4.0] /home/csanyipal/.gradle/caches/transforms-3/fd6db1ec5ad0f9b078042f033e9f3927/transformed/emoji2-1.4.0/AndroidManifest.xml:25:13-67
+57            android:authorities="io.github.csanyipal.equivratiosolverplus.androidx-startup"
+57-->[androidx.emoji2:emoji2:1.4.0] /home/csanyipal/.gradle/caches/transforms-3/fd6db1ec5ad0f9b078042f033e9f3927/transformed/emoji2-1.4.0/AndroidManifest.xml:26:13-68
+58            android:exported="false" >
+58-->[androidx.emoji2:emoji2:1.4.0] /home/csanyipal/.gradle/caches/transforms-3/fd6db1ec5ad0f9b078042f033e9f3927/transformed/emoji2-1.4.0/AndroidManifest.xml:27:13-37
+59            <meta-data
+59-->[androidx.emoji2:emoji2:1.4.0] /home/csanyipal/.gradle/caches/transforms-3/fd6db1ec5ad0f9b078042f033e9f3927/transformed/emoji2-1.4.0/AndroidManifest.xml:29:13-31:52
+60                android:name="androidx.emoji2.text.EmojiCompatInitializer"
+60-->[androidx.emoji2:emoji2:1.4.0] /home/csanyipal/.gradle/caches/transforms-3/fd6db1ec5ad0f9b078042f033e9f3927/transformed/emoji2-1.4.0/AndroidManifest.xml:30:17-75
+61                android:value="androidx.startup" />
+61-->[androidx.emoji2:emoji2:1.4.0] /home/csanyipal/.gradle/caches/transforms-3/fd6db1ec5ad0f9b078042f033e9f3927/transformed/emoji2-1.4.0/AndroidManifest.xml:31:17-49
+62            <meta-data
+62-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/csanyipal/.gradle/caches/transforms-3/582c691923433e7922d4069b6494cb84/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:29:13-31:52
+63                android:name="androidx.lifecycle.ProcessLifecycleInitializer"
+63-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/csanyipal/.gradle/caches/transforms-3/582c691923433e7922d4069b6494cb84/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:30:17-78
+64                android:value="androidx.startup" />
+64-->[androidx.lifecycle:lifecycle-process:2.6.2] /home/csanyipal/.gradle/caches/transforms-3/582c691923433e7922d4069b6494cb84/transformed/lifecycle-process-2.6.2/AndroidManifest.xml:31:17-49
+65            <meta-data
+65-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:29:13-31:52
+66                android:name="androidx.profileinstaller.ProfileInstallerInitializer"
+66-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:30:17-85
+67                android:value="androidx.startup" />
+67-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:31:17-49
+68        </provider>
+69
+70        <receiver
+70-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:34:9-52:20
+71            android:name="androidx.profileinstaller.ProfileInstallReceiver"
+71-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:35:13-76
+72            android:directBootAware="false"
+72-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:36:13-44
+73            android:enabled="true"
+73-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:37:13-35
+74            android:exported="true"
+74-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:38:13-36
+75            android:permission="android.permission.DUMP" >
+75-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:39:13-57
+76            <intent-filter>
+76-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:40:13-42:29
+77                <action android:name="androidx.profileinstaller.action.INSTALL_PROFILE" />
+77-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:17-91
+77-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:41:25-88
+78            </intent-filter>
+79            <intent-filter>
+79-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:43:13-45:29
+80                <action android:name="androidx.profileinstaller.action.SKIP_FILE" />
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:17-85
+80-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:44:25-82
+81            </intent-filter>
+82            <intent-filter>
+82-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:46:13-48:29
+83                <action android:name="androidx.profileinstaller.action.SAVE_PROFILE" />
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:17-88
+83-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:47:25-85
+84            </intent-filter>
+85            <intent-filter>
+85-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:49:13-51:29
+86                <action android:name="androidx.profileinstaller.action.BENCHMARK_OPERATION" />
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:17-95
+86-->[androidx.profileinstaller:profileinstaller:1.3.0] /home/csanyipal/.gradle/caches/transforms-3/340aead619e0ef6e50184bd4cf0af0c3/transformed/profileinstaller-1.3.0/AndroidManifest.xml:50:25-92
+87            </intent-filter>
+88        </receiver>
+89    </application>
+90
+91</manifest>
