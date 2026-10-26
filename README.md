@@ -4,7 +4,7 @@
 
 ## License
 
-This program is **free software**: you may distribute and/or modify it
+This program is **free software**: you may distribute and/or modify it 
 under the terms of the **GNU General Public License, Version 3 or later**.
 
 ## Other
