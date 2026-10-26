@@ -1,0 +1,78 @@
+EquivRatioSolverPlus
+Copyright (C) 2026 Csányi Pál
+
+This project contains components under different free licenses,
+as described below.
+
+======================================================================
+1. SOURCE CODE
+======================================================================
+
+The source code of EquivRatioSolverPlus is free software: you can
+redistribute it and/or modify it under the terms of the GNU General
+Public License as published by the Free Software Foundation, either
+version 3 of the License, or (at your option) any later version.
+
+EquivRatioSolverPlus is distributed in the hope that it will be
+useful, but WITHOUT ANY WARRANTY; without even the implied warranty
+of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with EquivRatioSolverPlus. If not, see
+<https://www.gnu.org/licenses/>.
+
+The full text of the GNU General Public License version 3 is
+available in the file named "COPYING" in the root directory of this
+project.
+
+======================================================================
+2. IMAGES AND ICONS
+======================================================================
+
+The following graphical assets were created by Csányi Pál and are
+licensed under the Creative Commons Attribution-ShareAlike 4.0
+International License (CC BY-SA 4.0):
+
+  - The six PNG image files located in the directory:
+        app/src/main/assets/
+	Specifically: 	PeldaEgyenesAranyossagraSzovegNelkul.png
+			PeldaForditottAranyossagraSzovegNelkul.png
+			egyenesAranyossagNegativ.png
+			egyenesAranyossagPozitiv.png
+			forditottAranyossagNegativ.png
+			forditottAranyossagPozitiv.png
+
+  - The launcher icon components located in the directory:
+        app/src/main/res/drawable/
+        Specifically: ic_launcher_background.xml
+                      ic_launcher_foreground.xml
+
+You are free to share (copy and redistribute the material in any
+medium or format) and adapt (remix, transform, and build upon the
+material) for any purpose, even commercially, under the following
+terms:
+
+  Attribution  — You must give appropriate credit to Csányi Pál,
+                 provide a link to the license, and indicate if
+                 changes were made.
+
+  ShareAlike   — If you remix, transform, or build upon the
+                 material, you must distribute your contributions
+                 under the same license as the original.
+
+To view a copy of this license, visit:
+    https://creativecommons.org/licenses/by-sa/4.0/legalcode
+
+======================================================================
+3. COMPATIBILITY NOTE
+======================================================================
+
+CC BY-SA 4.0 is one-way compatible with the GNU GPL v3: the
+CC BY-SA 4.0 licensed images and icons may be combined with the
+GPL v3 licensed source code in this project, and the combined work
+may be distributed under the terms of the GNU GPL v3, provided that
+the attribution and ShareAlike conditions of CC BY-SA 4.0 are also
+respected.
+
+======================================================================
