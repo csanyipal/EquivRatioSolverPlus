@@ -47,6 +47,10 @@ International License (CC BY-SA 4.0):
         app/src/main/res/drawable/
         Specifically: ic_launcher_background.xml
                       ic_launcher_foreground.xml
+	app/src/main/res/mipmap-anydpi-v26/
+        Specifically: ic_launcher.xml
+                      ic_launcher_round.xml
+
 
 You are free to share (copy and redistribute the material in any
 medium or format) and adapt (remix, transform, and build upon the
