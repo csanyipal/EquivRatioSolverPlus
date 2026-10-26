@@ -1,11 +1,28 @@
-*.iml
-.gradle
-.vscode
-/local.properties
-/.idea
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Gradle és build kimenet
+.gradle/
+build/
+*/build/
+*.apk
+*.aab
+*.ap_
+
+# Helyi konfiguráció (SDK elérési út, stb.)
 local.properties
+
+# IDE fájlok
+.idea/
+*.iml
+.navigation/
+captures/
+
+# VS Code
+.vscode/
+
+# Aláíró kulcsok (soha ne töltsd fel!)
+*.jks
+*.keystore
+key.properties
+
+# Egyéb
+*.log
+.DS_Store
