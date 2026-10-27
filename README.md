@@ -2,7 +2,9 @@
 
 ## About
 
-**Direct** & **Inverse Proportionality** calculations, a **diagram** showing the **graph** of the proportionality function and its properties, **further mathematical processing** of one of the calculated proportionality factors, **saving** or **sending** the result, and a **comprehensive guide** to the theory of proportionality in text and images.
+**Direct** & **Inverse Proportionality** calculations, a **diagram** showing the **graph** of the proportionality function and its properties, 
+**further mathematical processing** of one of the calculated proportionality variables, **saving** or **sending** the result, and a **comprehensive 
+guide** to the theory of proportionality in text and images.
 
 ## License
 
