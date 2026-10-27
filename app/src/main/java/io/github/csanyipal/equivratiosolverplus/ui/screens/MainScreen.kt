@@ -1410,44 +1410,60 @@ private fun OperationScreen(
                     }
                 }
             }
-            OutlinedTextField(
-                value = operand,
-                onValueChange = { value ->
-                    if (value.matches(Regex("-?\\d*(\\.\\d*)?"))) {
-                        onOperandChange(value)
-                    }
-                },
+            Row(
                 modifier = Modifier.fillMaxWidth(),
-                placeholder = { Text(stringResource(R.string.operation_number_hint)) },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(
-                    keyboardType = KeyboardType.Decimal,
-                    imeAction = ImeAction.Next
-                ),
-                keyboardActions = androidx.compose.foundation.text.KeyboardActions(
-                    onNext = { noteFocusRequester.requestFocus() },
-                    onDone = { noteFocusRequester.requestFocus() }
-                )
-            )
-            OutlinedTextField(
-                value = note,
-                onValueChange = onNoteChange,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .focusRequester(noteFocusRequester)
-                    .bringIntoViewRequester(noteBringIntoViewRequester)
-                    .onFocusChanged { focusState ->
-                        if (focusState.isFocused) {
-                            operationScope.launch {
-                                delay(300)
-                                noteBringIntoViewRequester.bringIntoView()
-                            }
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = operand,
+                    onValueChange = { value ->
+                        if (value.matches(Regex("-?\\d*(\\.\\d*)?"))) {
+                            onOperandChange(value)
                         }
                     },
-                placeholder = { Text(stringResource(R.string.operation_note_hint)) },
-                singleLine = true,
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done)
-            )
+                    modifier = Modifier.weight(1f),
+                    placeholder = { Text(stringResource(R.string.operation_number_hint)) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(
+                        keyboardType = KeyboardType.Decimal,
+                        imeAction = ImeAction.Next
+                    ),
+                    keyboardActions = androidx.compose.foundation.text.KeyboardActions(
+                        onNext = { noteFocusRequester.requestFocus() },
+                        onDone = { noteFocusRequester.requestFocus() }
+                    )
+                )
+                IconButton(onClick = { onOperandChange("") }) {
+                    Text("[x]")
+                }
+            }
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = note,
+                    onValueChange = onNoteChange,
+                    modifier = Modifier
+                        .weight(1f)
+                        .focusRequester(noteFocusRequester)
+                        .bringIntoViewRequester(noteBringIntoViewRequester)
+                        .onFocusChanged { focusState ->
+                            if (focusState.isFocused) {
+                                operationScope.launch {
+                                    delay(300)
+                                    noteBringIntoViewRequester.bringIntoView()
+                                }
+                            }
+                        },
+                    placeholder = { Text(stringResource(R.string.operation_note_hint)) },
+                    singleLine = true,
+                    keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done)
+                )
+                IconButton(onClick = { onNoteChange("") }) {
+                    Text("[x]")
+                }
+            }
             Row(
                 modifier = Modifier.fillMaxWidth(),
                 verticalAlignment = Alignment.CenterVertically
