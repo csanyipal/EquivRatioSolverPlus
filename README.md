@@ -19,3 +19,7 @@ The application is written in **Kotlin** and uses **Jetpack Compose** for the us
 
 ```bash
 ./gradlew assembleRelease
+```
+
+## Other
+The **Copilot** AI-based **assistant** helped with the development of this application.
