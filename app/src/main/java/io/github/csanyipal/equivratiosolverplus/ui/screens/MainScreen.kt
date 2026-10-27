@@ -1434,7 +1434,7 @@ private fun OperationScreen(
                     )
                 )
                 IconButton(onClick = { onOperandChange("") }) {
-                    Text("[x]")
+                    Text("⌧")
                 }
             }
             Row(
@@ -1461,7 +1461,7 @@ private fun OperationScreen(
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done)
                 )
                 IconButton(onClick = { onNoteChange("") }) {
-                    Text("[x]")
+                    Text("⌧")
                 }
             }
             Row(
