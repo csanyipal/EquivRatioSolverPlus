@@ -1307,7 +1307,7 @@ private fun OperationScreen(
     val savedMessage = stringResource(R.string.operation_saved)
     val saveFailedMessage = stringResource(R.string.operation_save_failed)
     val variableLabels = listOf("y₁", "x₁", "y₂", "x₂")
-    val operations = listOf("+", "-", "⋅", ":")
+    val operations = listOf("+", "-", "×", "÷")
     var variableMenuExpanded by remember { mutableStateOf(false) }
     var operationMenuExpanded by remember { mutableStateOf(false) }
     val operationResult = calculateOperationResult(
