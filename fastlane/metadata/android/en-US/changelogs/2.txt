@@ -1,0 +1,2 @@
+Added an  [x]  clear button to the right of each input on the fourth screen.
+Each button clears only its associated numeric or note field.
