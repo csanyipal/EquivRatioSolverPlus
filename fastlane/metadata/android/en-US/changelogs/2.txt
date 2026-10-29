@@ -1,2 +1,5 @@
-Added an  [x]  clear button to the right of each input on the fourth screen.
-Each button clears only its associated numeric or note field.
+- Added an  [x]  clear button to the right of each input on the fourth screen. Each button clears only its associated numeric or note field.
+- Updated the English formulas on screens 1 and 3, and in the saved Results text: Direct:  y ∝ kx ,  y₁/x₁ = y₂/x₂ Inverse:  y ∝ k/x ,  y₁x₁ = y₂x₂ Hungarian formula text remains unchanged.
+
+
+
