@@ -48,10 +48,10 @@ You should have received a copy of the GNU General Public License along with Equ
     <string name="yes">Yes</string>
     <string name="direct_proportionality">Direct proportionality</string>
     <string name="inverse_proportionality">Inverse proportionality</string>
-    <string name="direct_proportionality_formula">y∝kx, y₁/x₁ = y₂/x₂</string>
-    <string name="inverse_proportionality_formula">y∝k/x, y₁x₁ = y₂x₂</string>
-    <string name="direct_proportionality_equation">y₁/x₁ = y₂/x₂</string>
-    <string name="inverse_proportionality_equation">y₁x₁ = y₂x₂</string>
+    <string name="direct_proportionality_formula">y∝kx, y₁/x₁=y₂/x₂</string>
+    <string name="inverse_proportionality_formula">y∝k/x, y₁x₁=y₂x₂</string>
+    <string name="direct_proportionality_equation">y₁/x₁=y₂/x₂</string>
+    <string name="inverse_proportionality_equation">y₁x₁=y₂x₂</string>
     <string name="language_settings">Application language</string>
     <string name="language_english">English</string>
     <string name="language_hungarian">Hungarian</string>
