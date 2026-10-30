@@ -49,6 +49,10 @@ You should have received a copy of the GNU General Public License along with Equ
     <string name="yes">Igen</string>
     <string name="direct_proportionality">Egyenes arányosság</string>
     <string name="inverse_proportionality">Fordított arányosság</string>
+    <string name="direct_proportionality_formula">y∝k⋅x, k = y₁:x₁ = y₂:x₂</string>
+    <string name="inverse_proportionality_formula">y∝k:x, k = y₁⋅x₁ = y₂⋅x₂</string>
+    <string name="direct_proportionality_equation">y₁:x₁ = y₂:x₂</string>
+    <string name="inverse_proportionality_equation">y₁⋅x₁ = y₂⋅x₂</string>
     <string name="language_settings">Alkalmazás nyelve</string>
     <string name="language_english">Angol</string>
     <string name="language_hungarian">Magyar</string>

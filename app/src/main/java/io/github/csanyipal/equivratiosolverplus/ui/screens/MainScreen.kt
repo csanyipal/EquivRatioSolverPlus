@@ -583,11 +583,13 @@ fun MainScreen() {
                 style = MaterialTheme.typography.titleLarge
             )
             Text(
-                text = if (inverseProportionality) {
-                    "y ∝ k : x, k = y₁ ⋅ x₁ = y₂ ⋅ x₂"
-                } else {
-                    "y ∝ k ⋅ x, k = y₁ : x₁ = y₂ : x₂"
-                },
+                text = stringResource(
+                    if (inverseProportionality) {
+                        R.string.inverse_proportionality_formula
+                    } else {
+                        R.string.direct_proportionality_formula
+                    }
+                ),
                 style = MaterialTheme.typography.bodyLarge
             )
             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -1608,6 +1610,8 @@ private fun ResultScreen(
     val keyboardController = LocalSoftwareKeyboardController.current
     val directTitle = stringResource(R.string.direct_proportionality)
     val inverseTitle = stringResource(R.string.inverse_proportionality)
+    val directEquation = stringResource(R.string.direct_proportionality_equation)
+    val inverseEquation = stringResource(R.string.inverse_proportionality_equation)
     val saveSucceededMessage = stringResource(R.string.results_saved)
     val saveFailedMessage = stringResource(R.string.results_save_failed)
     val noteScrollState = rememberScrollState()
@@ -1621,7 +1625,16 @@ private fun ResultScreen(
     } else {
         null
     }
-    val report = remember(inverse, values, yComments, xComments, decimalPlaces, angleUnit) {
+    val report = remember(
+        inverse,
+        values,
+        yComments,
+        xComments,
+        decimalPlaces,
+        angleUnit,
+        directEquation,
+        inverseEquation
+    ) {
         buildReport(
             inverse,
             values,
@@ -1630,7 +1643,9 @@ private fun ResultScreen(
             decimalPlaces,
             angleUnit,
             directTitle,
-            inverseTitle
+            inverseTitle,
+            directEquation,
+            inverseEquation
         )
     }
     val exportReport = buildReport(
@@ -1641,7 +1656,9 @@ private fun ResultScreen(
         null,
         angleUnit,
         directTitle,
-        inverseTitle
+        inverseTitle,
+        directEquation,
+        inverseEquation
     )
     val calculatedProperties = report.lines().drop(6).joinToString("\n")
     val displayedValues = values.map { formatVariableValue(it, decimalPlaces) }
@@ -1657,7 +1674,7 @@ private fun ResultScreen(
         if (constant == null) {
             Text(stringResource(R.string.result_enter_values))
         } else {
-            Text(if (inverse) "y₁ · x₁ = y₂ · x₂" else "y₁ : x₁ = y₂ : x₂")
+            Text(if (inverse) inverseEquation else directEquation)
             Spacer(Modifier.padding(4.dp))
             listOf(
                 "y₁=${displayedValues[0]}" to yComments,
@@ -1812,7 +1829,9 @@ private fun buildReport(
     decimalPlaces: Int?,
     angleUnit: String,
     directTitle: String,
-    inverseTitle: String
+    inverseTitle: String,
+    directEquation: String,
+    inverseEquation: String
 ): String {
     val y1 = values[0].toDoubleOrNull()
     val x1 = values[1].toDoubleOrNull()
@@ -1830,7 +1849,7 @@ private fun buildReport(
 
     val lines = mutableListOf(
         if (inverse) inverseTitle else directTitle,
-        if (inverse) "y₁ · x₁ = y₂ · x₂" else "y₁ : x₁ = y₂ : x₂",
+        if (inverse) inverseEquation else directEquation,
         variableLine("y₁", values[0], yComments),
         variableLine("x₁", values[1], xComments),
         variableLine("y₂", values[2], yComments),
