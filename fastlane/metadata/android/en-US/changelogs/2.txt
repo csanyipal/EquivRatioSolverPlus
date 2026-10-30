@@ -2,6 +2,4 @@
 - Update the English formulas on screens 1 and 3, and in the saved Results text: Direct: y∝kx, y₁/x₁ = y₂/x₂ Inverse: y∝k/x, y₁x₁ = y₂x₂.
 - Update again the English formulas on screens 1 and 3.
 - Change the multiplication and division symbols on the screen 4.
-
-
-
+- Refine the proportionality formulas that appear in the text of theory_en.html and theory_hu.html.
