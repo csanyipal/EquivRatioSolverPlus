@@ -1243,7 +1243,7 @@ fun MainScreen() {
                         context.startActivity(
                             Intent(
                                 Intent.ACTION_VIEW,
-                                Uri.parse("https://sites.google.com/view/scaynialp/home/donation")
+                                Uri.parse("https://csanyipal.github.io/EquivRatioSolverPlus/")
                             )
                         )
                     },
