@@ -25,3 +25,11 @@ The application is written in **Kotlin** and uses **Jetpack Compose** for the us
 
 ## Other
 The **Copilot** AI-based **assistant** helped with the development of this application.
+
+## Project Website & Donations
+
+The official project website and donation page is:
+
+https://csanyipal.github.io/EquivRatioSolverPlus/
+
+This GitHub Pages site is maintained by the project author and serves as the official donation channel for this project.
