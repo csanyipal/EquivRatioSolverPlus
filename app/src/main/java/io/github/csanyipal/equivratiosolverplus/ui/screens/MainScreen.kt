@@ -12,7 +12,6 @@ package io.github.csanyipal.equivratiosolverplus.ui.screens
 
 import android.app.Activity
 import android.content.Intent
-import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteException
 import android.graphics.Paint
 import android.graphics.Typeface
@@ -85,6 +84,8 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.semantics
 import androidx.compose.ui.layout.boundsInRoot
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.platform.LocalView
@@ -203,6 +204,7 @@ fun MainScreen() {
     var storeDialogVisible by remember { mutableStateOf(false) }
     var restoreDialogVisible by remember { mutableStateOf(false) }
     var storedRatioName by rememberSaveable { mutableStateOf("") }
+    var restoreSearchQuery by rememberSaveable { mutableStateOf("") }
     var savedRatios by remember { mutableStateOf(emptyList<SavedRatio>()) }
     val savedRatiosDatabase = remember(context) {
         SavedRatiosDatabase(context.applicationContext)
@@ -210,10 +212,11 @@ fun MainScreen() {
     val values = listOf(y1, x1, y2, x2)
     val storeNotCalculatedMessage = stringResource(R.string.store_ratio_not_calculated)
     val storedMessage = stringResource(R.string.store_ratio_saved)
-    val duplicateNameMessage = stringResource(R.string.store_ratio_name_exists)
     val nameRequiredMessage = stringResource(R.string.store_ratio_name_required)
-    val noSavedRatiosMessage = stringResource(R.string.saved_ratios_empty)
     val storeFailureMessage = stringResource(R.string.operation_save_failed)
+    val ratioDeletedMessage = stringResource(R.string.saved_ratio_deleted)
+    val ratioDeleteFailedMessage = stringResource(R.string.saved_ratio_delete_failed)
+    val deleteSavedRatioLabel = stringResource(R.string.delete_saved_ratio)
     val focusRequesters = remember { List(4) { FocusRequester() } }
     val bringIntoViewRequesters = remember { List(4) { BringIntoViewRequester() } }
     fun toggleProportionality() {
@@ -272,12 +275,27 @@ fun MainScreen() {
             focusRequesters[(index + 1) % 4].requestFocus()
         }
     }
-    fun refreshSavedRatios() {
+    fun refreshSavedRatios(showRestoreDialog: Boolean = true) {
         try {
             savedRatios = savedRatiosDatabase.getAll()
-            restoreDialogVisible = true
+            if (showRestoreDialog) {
+                restoreSearchQuery = ""
+                restoreDialogVisible = true
+            }
         } catch (_: SQLiteException) {
             Toast.makeText(context, storeFailureMessage, Toast.LENGTH_SHORT).show()
+        }
+    }
+    fun deleteSavedRatio(ratio: SavedRatio) {
+        try {
+            if (savedRatiosDatabase.delete(ratio.name)) {
+                savedRatios = savedRatiosDatabase.getAll()
+                Toast.makeText(context, ratioDeletedMessage, Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(context, ratioDeleteFailedMessage, Toast.LENGTH_SHORT).show()
+            }
+        } catch (_: SQLiteException) {
+            Toast.makeText(context, ratioDeleteFailedMessage, Toast.LENGTH_SHORT).show()
         }
     }
     fun restoreRatio(ratio: SavedRatio) {
@@ -668,6 +686,7 @@ fun MainScreen() {
                                 ).show()
                             } else {
                                 storedRatioName = ""
+                                refreshSavedRatios(showRestoreDialog = false)
                                 storeDialogVisible = true
                             }
                         }
@@ -834,12 +853,58 @@ fun MainScreen() {
             onDismissRequest = { storeDialogVisible = false },
             title = { Text(stringResource(R.string.store_ratio_title)) },
             text = {
-                OutlinedTextField(
-                    value = storedRatioName,
-                    onValueChange = { storedRatioName = it },
-                    label = { Text(stringResource(R.string.store_ratio_name_hint)) },
-                    singleLine = true
-                )
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedTextField(
+                        value = storedRatioName,
+                        onValueChange = { storedRatioName = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text(stringResource(R.string.store_ratio_name_hint)) },
+                        singleLine = true
+                    )
+                    val matchingRatios = savedRatios.filter {
+                        it.name.contains(storedRatioName.trim(), ignoreCase = true)
+                    }
+                    if (matchingRatios.isEmpty()) {
+                        Text(
+                            text = stringResource(
+                                if (savedRatios.isEmpty()) {
+                                    R.string.saved_ratios_empty
+                                } else {
+                                    R.string.saved_ratios_no_match
+                                }
+                            )
+                        )
+                    } else {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(max = 220.dp)
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            matchingRatios.forEach { ratio ->
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Button(
+                                        modifier = Modifier.weight(1f),
+                                        onClick = { storedRatioName = ratio.name }
+                                    ) {
+                                        Text(ratio.name)
+                                    }
+                                    IconButton(
+                                        onClick = { deleteSavedRatio(ratio) },
+                                        modifier = Modifier.semantics {
+                                            contentDescription = deleteSavedRatioLabel
+                                        }
+                                    ) {
+                                        Text("⌧")
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             },
             dismissButton = {
                 Button(onClick = { storeDialogVisible = false }) {
@@ -861,7 +926,7 @@ fun MainScreen() {
                             operationOperand
                         )
                         try {
-                            savedRatiosDatabase.insert(
+                            savedRatiosDatabase.save(
                                 SavedRatio(
                                     name = name,
                                     inverse = inverseProportionality,
@@ -878,12 +943,6 @@ fun MainScreen() {
                             )
                             storeDialogVisible = false
                             Toast.makeText(context, storedMessage, Toast.LENGTH_SHORT).show()
-                        } catch (_: SQLiteConstraintException) {
-                            Toast.makeText(
-                                context,
-                                duplicateNameMessage,
-                                Toast.LENGTH_SHORT
-                            ).show()
                         } catch (_: SQLiteException) {
                             Toast.makeText(
                                 context,
@@ -904,21 +963,54 @@ fun MainScreen() {
             onDismissRequest = { restoreDialogVisible = false },
             title = { Text(stringResource(R.string.saved_ratios_title)) },
             text = {
-                if (savedRatios.isEmpty()) {
-                    Text(noSavedRatiosMessage)
-                } else {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .heightIn(max = 360.dp)
-                            .verticalScroll(rememberScrollState())
-                    ) {
-                        savedRatios.forEach { ratio ->
-                            Button(
-                                modifier = Modifier.fillMaxWidth(),
-                                onClick = { restoreRatio(ratio) }
-                            ) {
-                                Text(ratio.name)
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    OutlinedTextField(
+                        value = restoreSearchQuery,
+                        onValueChange = { restoreSearchQuery = it },
+                        modifier = Modifier.fillMaxWidth(),
+                        label = { Text(stringResource(R.string.saved_ratios_search_hint)) },
+                        singleLine = true
+                    )
+                    val matchingRatios = savedRatios.filter {
+                        it.name.contains(restoreSearchQuery.trim(), ignoreCase = true)
+                    }
+                    if (matchingRatios.isEmpty()) {
+                        Text(
+                            text = stringResource(
+                                if (savedRatios.isEmpty()) {
+                                    R.string.saved_ratios_empty
+                                } else {
+                                    R.string.saved_ratios_no_match
+                                }
+                            )
+                        )
+                    } else {
+                        Column(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .heightIn(max = 300.dp)
+                                .verticalScroll(rememberScrollState())
+                        ) {
+                            matchingRatios.forEach { ratio ->
+                                Row(
+                                    modifier = Modifier.fillMaxWidth(),
+                                    verticalAlignment = Alignment.CenterVertically
+                                ) {
+                                    Button(
+                                        modifier = Modifier.weight(1f),
+                                        onClick = { restoreRatio(ratio) }
+                                    ) {
+                                        Text(ratio.name)
+                                    }
+                                    IconButton(
+                                        onClick = { deleteSavedRatio(ratio) },
+                                        modifier = Modifier.semantics {
+                                            contentDescription = deleteSavedRatioLabel
+                                        }
+                                    ) {
+                                        Text("⌧")
+                                    }
+                                }
                             }
                         }
                     }

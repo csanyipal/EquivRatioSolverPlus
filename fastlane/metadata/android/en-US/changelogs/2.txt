@@ -3,3 +3,4 @@
 - Update again the English formulas on screens 1 and 3.
 - Change the multiplication and division symbols on the screen 4.
 - Refine the proportionality formulas that appear in the text of theory_en.html and theory_hu.html.
+- Added searchable saved-item lists to both dialogs. On Store, search for or select an existing name, then save to update it; ⌧ deletes the selected item. On Restore, search by name, restore a match, or delete it with ⌧. Search and deletion messages are localized in English and Hungarian.

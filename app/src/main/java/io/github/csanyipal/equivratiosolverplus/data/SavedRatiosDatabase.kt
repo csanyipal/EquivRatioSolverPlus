@@ -58,32 +58,46 @@ class SavedRatiosDatabase(context: Context) :
 
     override fun onUpgrade(database: SQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit
 
-    fun insert(ratio: SavedRatio) {
+    fun save(ratio: SavedRatio) {
         require(ratio.values.size == 4)
         require(ratio.calculatedIndex in 0..3)
         require(ratio.operationVariableIndex in 0..3)
         require(ratio.operationIndex in 0..3)
-        writableDatabase.insertOrThrow(
+        val values = ContentValues().apply {
+            put(COLUMN_NAME, ratio.name)
+            put(COLUMN_INVERSE, if (ratio.inverse) 1 else 0)
+            put(COLUMN_Y1, ratio.values[0])
+            put(COLUMN_X1, ratio.values[1])
+            put(COLUMN_Y2, ratio.values[2])
+            put(COLUMN_X2, ratio.values[3])
+            put(COLUMN_CALCULATED_INDEX, ratio.calculatedIndex)
+            putOptional(COLUMN_Y_COMMENTS, ratio.yComments)
+            putOptional(COLUMN_X_COMMENTS, ratio.xComments)
+            put(COLUMN_OPERATION_VARIABLE, ratio.operationVariableIndex)
+            put(COLUMN_OPERATION_INDEX, ratio.operationIndex)
+            putOptional(COLUMN_OPERATION_OPERAND, ratio.operationOperand)
+            ratio.operationResult?.let { put(COLUMN_OPERATION_RESULT, it) }
+                ?: putNull(COLUMN_OPERATION_RESULT)
+            putOptional(COLUMN_OPERATION_NOTE, ratio.operationNote)
+        }
+        val database = writableDatabase
+        val updated = database.update(
             TABLE_NAME,
-            null,
-            ContentValues().apply {
-                put(COLUMN_NAME, ratio.name)
-                put(COLUMN_INVERSE, if (ratio.inverse) 1 else 0)
-                put(COLUMN_Y1, ratio.values[0])
-                put(COLUMN_X1, ratio.values[1])
-                put(COLUMN_Y2, ratio.values[2])
-                put(COLUMN_X2, ratio.values[3])
-                put(COLUMN_CALCULATED_INDEX, ratio.calculatedIndex)
-                putOptional(COLUMN_Y_COMMENTS, ratio.yComments)
-                putOptional(COLUMN_X_COMMENTS, ratio.xComments)
-                put(COLUMN_OPERATION_VARIABLE, ratio.operationVariableIndex)
-                put(COLUMN_OPERATION_INDEX, ratio.operationIndex)
-                putOptional(COLUMN_OPERATION_OPERAND, ratio.operationOperand)
-                ratio.operationResult?.let { put(COLUMN_OPERATION_RESULT, it) }
-                    ?: putNull(COLUMN_OPERATION_RESULT)
-                putOptional(COLUMN_OPERATION_NOTE, ratio.operationNote)
-            }
+            values,
+            "$COLUMN_NAME = ?",
+            arrayOf(ratio.name)
         )
+        if (updated == 0) {
+            database.insertOrThrow(TABLE_NAME, null, values)
+        }
+    }
+
+    fun delete(name: String): Boolean {
+        return writableDatabase.delete(
+            TABLE_NAME,
+            "$COLUMN_NAME = ?",
+            arrayOf(name)
+        ) > 0
     }
 
     fun getAll(): List<SavedRatio> {
