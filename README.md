@@ -1,5 +1,7 @@
 # EquivRatioSolverPlus
 
+[![EquivRatioSolverPlus Build](https://github.com/csanyipal/EquivRatioSolverPlus/actions/workflows/ci.yml/badge.svg)](https://github.com/csanyipal/EquivRatioSolverPlus/actions/workflows/ci.yml)
+
 ## About
 
 **Direct** & **Inverse Proportionality** calculations, a **diagram** showing the **graph** of the proportionality function and its properties, 
