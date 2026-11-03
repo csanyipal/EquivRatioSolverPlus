@@ -29,12 +29,27 @@ android {
         }
     }
 
+    signingConfigs {
+        create("release") {
+            // Környezeti változókból olvasás, ha nincs beállítva (helyi fejlesztés), akkor null
+            val keystorePath = System.getenv("KEYSTORE_FILE")
+            if (keystorePath != null) {
+                storeFile = file(keystorePath)
+                storePassword = System.getenv("KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("KEY_ALIAS")
+                keyPassword = System.getenv("KEY_PASSWORD")
+            }
+        }
+    }
+    
     buildTypes {
-        release {
+	release {
+	    if (System.getenv("KEYSTORE_FILE") != null) {
+		signingConfig = signingConfigs.getByName("release")
+	    }
             isMinifyEnabled = false
             proguardFiles(
-                
-getDefaultProguardFile("proguard-android-optimize.txt"),
+		getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
         }
