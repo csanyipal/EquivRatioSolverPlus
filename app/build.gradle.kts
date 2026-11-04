@@ -21,8 +21,8 @@ android {
         applicationId = "io.github.csanyipal.equivratiosolverplus"
         minSdk = 26
         targetSdk = 34
-        versionCode = 4
-        versionName = "1.3"
+        versionCode = 5
+        versionName = "1.4"
 
         vectorDrawables {
             useSupportLibrary = true
