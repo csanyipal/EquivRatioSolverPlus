@@ -4,6 +4,7 @@ on:
   push:
     tags:
       - 'v*' # Csak a v-vel kezdődő tagek esetén indul
+      workflow_dispatch:   # ← ezt a sort add hozzá
 
 permissions:
   contents: write # Szükséges a Release létrehozásához és fájlok feltöltéséhez
