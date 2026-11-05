@@ -1,6 +1,6 @@
 # EquivRatioSolverPlus
 
-[![EquivRatioSolverPlus Build](https://github.com/csanyipal/EquivRatioSolverPlus/actions/workflows/ci.yml/badge.svg)](https://github.com/csanyipal/EquivRatioSolverPlus/actions/workflows/ci.yml)
+[![EquivRatioSolverPlus Build](https://github.com/csanyipal/EquivRatioSolverPlus/actions/workflows/ci.yml/badge.svg)](https://github.com/csanyipal/EquivRatioSolverPlus/actions/workflows/ci.yml) [![Latest release](https://img.shields.io/github/v/release/csanyipal/EquivRatioSolverPlus)](https://github.com/csanyipal/EquivRatioSolverPlus/releases/latest)
 
 ## About
 
