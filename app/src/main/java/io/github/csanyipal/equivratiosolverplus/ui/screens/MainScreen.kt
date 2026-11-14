@@ -1415,6 +1415,13 @@ private fun OperationScreen(
     val resultText = operationResult?.let {
         String.format(Locale.US, "%.${decimalPlaces.coerceIn(0, 9)}f", it)
     } ?: ""
+    var resultAndNote by rememberSaveable(resultText, note) {
+        mutableStateOf(
+            listOf(resultText, note)
+                .filter(String::isNotBlank)
+                .joinToString("\n")
+        )
+    }
     val report = buildOperationReport(
         values = values,
         yComments = yComments,
@@ -1516,7 +1523,7 @@ private fun OperationScreen(
                         }
                     },
                     modifier = Modifier.weight(1f),
-                    placeholder = { Text(stringResource(R.string.operation_number_hint)) },
+                    label = { Text(stringResource(R.string.operation_operand_label)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(
                         keyboardType = KeyboardType.Decimal,
@@ -1550,7 +1557,7 @@ private fun OperationScreen(
                                 }
                             }
                         },
-                    placeholder = { Text(stringResource(R.string.operation_note_hint)) },
+                    label = { Text(stringResource(R.string.operation_note_label)) },
                     singleLine = true,
                     keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done)
                 )
@@ -1558,21 +1565,13 @@ private fun OperationScreen(
                     Text("⌧")
                 }
             }
-            Row(
+            OutlinedTextField(
+                value = resultAndNote,
+                onValueChange = { resultAndNote = it },
                 modifier = Modifier.fillMaxWidth(),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                Text(
-                    text = resultText,
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-                Text(
-                    text = note,
-                    modifier = Modifier.weight(1f),
-                    style = MaterialTheme.typography.bodyLarge
-                )
-            }
+                label = { Text(stringResource(R.string.operation_result_label)) },
+                minLines = 2
+            )
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 Button(onClick = {
                     context.startActivity(

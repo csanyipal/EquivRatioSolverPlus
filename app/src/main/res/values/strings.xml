@@ -88,8 +88,9 @@ You should have received a copy of the GNU General Public License along with Equ
     <string name="navigation_result">Result</string>
     <string name="navigation_operation">Operation</string>
     <string name="operation_title">Mathematical operation on one of the variables of the calculated proportionality</string>
-    <string name="operation_number_hint">real number ≠ 0</string>
-    <string name="operation_note_hint">note</string>
+    <string name="operation_operand_label">Operand</string>
+    <string name="operation_note_label">Operand Note</string>
+    <string name="operation_result_label">Result</string>
     <string name="operation_send">Send</string>
     <string name="operation_save">Save</string>
     <string name="operation_saved">Result saved to Documents</string>

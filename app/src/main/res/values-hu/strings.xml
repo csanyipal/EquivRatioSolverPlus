@@ -89,8 +89,9 @@ You should have received a copy of the GNU General Public License along with Equ
     <string name="navigation_result">Eredmény</string>
     <string name="navigation_operation">Művelet</string>
     <string name="operation_title">Matematikai művelet a kiszámolt arányosság egyik változóján</string>
-    <string name="operation_number_hint">valós szám ≠ 0</string>
-    <string name="operation_note_hint">jegyzet</string>
+    <string name="operation_operand_label">Operandus</string>
+    <string name="operation_note_label">Operandus jegyzete</string>
+    <string name="operation_result_label">Eredmény</string>
     <string name="operation_send">Küldés</string>
     <string name="operation_save">Mentés</string>
     <string name="operation_saved">Az eredmény mentve a Dokumentumokba</string>
