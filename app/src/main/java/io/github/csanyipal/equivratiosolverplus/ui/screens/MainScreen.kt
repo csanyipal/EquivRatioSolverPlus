@@ -1415,12 +1415,24 @@ private fun OperationScreen(
     val resultText = operationResult?.let {
         String.format(Locale.US, "%.${decimalPlaces.coerceIn(0, 9)}f", it)
     } ?: ""
-    var resultAndNote by rememberSaveable(resultText, note) {
-        mutableStateOf(
-            listOf(resultText, note)
-                .filter(String::isNotBlank)
-                .joinToString("\n")
-        )
+    val selectedVariableNote = if (variableIndex == 0 || variableIndex == 2) {
+        yComments
+    } else {
+        xComments
+    }
+    val generatedOperationText = buildList {
+        add(displayedValues[variableIndex])
+        add(selectedVariableNote)
+        add(operations[operationIndex])
+        add(operand)
+        add(note)
+        if (resultText.isNotBlank()) {
+            add("=")
+            add(resultText)
+        }
+    }.filter(String::isNotBlank).joinToString(" ")
+    var resultAndNote by rememberSaveable(generatedOperationText) {
+        mutableStateOf(generatedOperationText)
     }
     val report = buildOperationReport(
         values = values,
