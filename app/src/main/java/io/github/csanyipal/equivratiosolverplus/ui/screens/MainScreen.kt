@@ -795,7 +795,12 @@ fun MainScreen() {
             title = { Text(text = stringResource(R.string.startup_notice_title)) },
             text = {
                 Column {
-                    Text(text = stringResource(R.string.startup_notice_message))
+                    Text(
+                        text = stringResource(R.string.startup_notice_message),
+                        modifier = Modifier
+                            .heightIn(max = 280.dp)
+                            .verticalScroll(rememberScrollState())
+                    )
                     Row(verticalAlignment = Alignment.CenterVertically) {
                         Checkbox(
                             checked = suppressStartupNotice,
