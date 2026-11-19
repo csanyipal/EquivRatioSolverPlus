@@ -1617,7 +1617,7 @@ private fun OperationScreen(
                     val uri = resolver.insert(MediaStore.Files.getContentUri("external"), metadata)
                     val saved = uri?.let {
                         resolver.openOutputStream(it)?.use { output ->
-                            output.write(report.toByteArray())
+                            output.write(resultAndNote.toByteArray(Charsets.UTF_8))
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             metadata.clear()
