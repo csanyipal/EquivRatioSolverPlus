@@ -199,6 +199,7 @@ fun MainScreen() {
     var operationSymbolIndex by rememberSaveable { mutableStateOf(0) }
     var operationOperand by rememberSaveable { mutableStateOf("") }
     var operationNote by rememberSaveable { mutableStateOf("") }
+    var operationDisplayText by rememberSaveable { mutableStateOf<String?>(null) }
     var manualDialogVisible by remember { mutableStateOf(false) }
     var theoryDialogVisible by remember { mutableStateOf(false) }
     var storeDialogVisible by remember { mutableStateOf(false) }
@@ -235,6 +236,7 @@ fun MainScreen() {
         }
     }
     fun updateInput(index: Int, value: String) {
+        operationDisplayText = null
         setInput(index, value)
         val missingIndex = calculatedIndex
         if (missingIndex != null && index != missingIndex) {
@@ -315,6 +317,7 @@ fun MainScreen() {
         operationSymbolIndex = ratio.operationIndex
         operationOperand = ratio.operationOperand
         operationNote = ratio.operationNote
+        operationDisplayText = ratio.operationDisplayText
         restoreDialogVisible = false
     }
     val activity = context as? Activity
@@ -739,8 +742,14 @@ fun MainScreen() {
                 values = listOf(y1, x1, y2, x2),
                 yComments = yComments,
                 xComments = xComments,
-                onYCommentsChange = { yComments = it },
-                onXCommentsChange = { xComments = it },
+                onYCommentsChange = {
+                    operationDisplayText = null
+                    yComments = it
+                },
+                onXCommentsChange = {
+                    operationDisplayText = null
+                    xComments = it
+                },
                 decimalPlaces = decimalPlaces.toIntOrNull()?.coerceIn(0, 9) ?: 3,
                 angleUnit = angleUnit
             )
@@ -755,13 +764,27 @@ fun MainScreen() {
                 yComments = yComments,
                 xComments = xComments,
                 variableIndex = operationVariableIndex,
-                onVariableIndexChange = { operationVariableIndex = it },
+                onVariableIndexChange = {
+                    operationDisplayText = null
+                    operationVariableIndex = it
+                },
                 operationIndex = operationSymbolIndex,
-                onOperationIndexChange = { operationSymbolIndex = it },
+                onOperationIndexChange = {
+                    operationDisplayText = null
+                    operationSymbolIndex = it
+                },
                 operand = operationOperand,
-                onOperandChange = { operationOperand = it },
+                onOperandChange = {
+                    operationDisplayText = null
+                    operationOperand = it
+                },
                 note = operationNote,
-                onNoteChange = { operationNote = it }
+                onNoteChange = {
+                    operationDisplayText = null
+                    operationNote = it
+                },
+                displayText = operationDisplayText,
+                onDisplayTextChange = { operationDisplayText = it }
             )
         }
     }
@@ -937,7 +960,34 @@ fun MainScreen() {
                                     operationIndex = operationSymbolIndex,
                                     operationOperand = operationOperand,
                                     operationResult = result,
-                                    operationNote = operationNote
+                                    operationNote = operationNote,
+                                    operationDisplayText = operationDisplayText
+                                        ?: buildOperationSummary(
+                                            selectedValue = formatVariableValue(
+                                                values[operationVariableIndex],
+                                                decimalPlaces.toIntOrNull()?.coerceIn(0, 9) ?: 3
+                                            ),
+                                            selectedVariableNote = if (
+                                                operationVariableIndex == 0 ||
+                                                operationVariableIndex == 2
+                                            ) {
+                                                yComments
+                                            } else {
+                                                xComments
+                                            },
+                                            operation = listOf("+", "-", "×", "÷")[
+                                                operationSymbolIndex
+                                            ],
+                                            operand = operationOperand,
+                                            operandNote = operationNote,
+                                            result = result?.let {
+                                                String.format(
+                                                    Locale.US,
+                                                    "%.${(decimalPlaces.toIntOrNull() ?: 3).coerceIn(0, 9)}f",
+                                                    it
+                                                )
+                                            }.orEmpty()
+                                        )
                                 )
                             )
                             storeDialogVisible = false
@@ -1386,7 +1436,9 @@ private fun OperationScreen(
     operand: String,
     onOperandChange: (String) -> Unit,
     note: String,
-    onNoteChange: (String) -> Unit
+    onNoteChange: (String) -> Unit,
+    displayText: String?,
+    onDisplayTextChange: (String) -> Unit
 ) {
     val context = LocalContext.current
     val noteFocusRequester = remember { FocusRequester() }
@@ -1411,25 +1463,15 @@ private fun OperationScreen(
     val resultText = operationResult?.let {
         String.format(Locale.US, "%.${decimalPlaces.coerceIn(0, 9)}f", it)
     } ?: ""
-    val selectedVariableNote = if (variableIndex == 0 || variableIndex == 2) {
-        yComments
-    } else {
-        xComments
-    }
-    val generatedOperationText = buildList {
-        add(displayedValues[variableIndex])
-        add(selectedVariableNote)
-        add(operations[operationIndex])
-        add(operand)
-        add(note)
-        if (resultText.isNotBlank()) {
-            add("=")
-            add(resultText)
-        }
-    }.filter(String::isNotBlank).joinToString(" ")
-    var resultAndNote by rememberSaveable(generatedOperationText) {
-        mutableStateOf(generatedOperationText)
-    }
+    val selectedVariableNote = if (variableIndex == 0 || variableIndex == 2) yComments else xComments
+    val generatedOperationText = buildOperationSummary(
+        selectedValue = displayedValues[variableIndex],
+        selectedVariableNote = selectedVariableNote,
+        operation = operations[operationIndex],
+        operand = operand,
+        operandNote = note,
+        result = resultText
+    )
     Column(
         modifier = modifier
             .imePadding()
@@ -1562,8 +1604,8 @@ private fun OperationScreen(
                 }
             }
             OutlinedTextField(
-                value = resultAndNote,
-                onValueChange = { resultAndNote = it },
+                value = displayText ?: generatedOperationText,
+                onValueChange = onDisplayTextChange,
                 modifier = Modifier.fillMaxWidth(),
                 label = { Text(stringResource(R.string.operation_result_label)) },
                 minLines = 2
@@ -1574,7 +1616,10 @@ private fun OperationScreen(
                         Intent.createChooser(
                             Intent(Intent.ACTION_SEND).apply {
                                 type = "text/plain"
-                                putExtra(Intent.EXTRA_TEXT, resultAndNote)
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    displayText ?: generatedOperationText
+                                )
                             },
                             sendLabel
                         )
@@ -1601,7 +1646,9 @@ private fun OperationScreen(
                     val uri = resolver.insert(MediaStore.Files.getContentUri("external"), metadata)
                     val saved = uri?.let {
                         resolver.openOutputStream(it)?.use { output ->
-                            output.write(resultAndNote.toByteArray(Charsets.UTF_8))
+                            output.write(
+                                (displayText ?: generatedOperationText).toByteArray(Charsets.UTF_8)
+                            )
                         }
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             metadata.clear()
@@ -1639,6 +1686,27 @@ private fun calculateOperationResult(
         3 -> if (operandValue == 0.0) null else selectedValue / operandValue
         else -> null
     }?.takeIf(Double::isFinite)
+}
+
+private fun buildOperationSummary(
+    selectedValue: String,
+    selectedVariableNote: String,
+    operation: String,
+    operand: String,
+    operandNote: String,
+    result: String
+): String {
+    return buildList {
+        add(selectedValue)
+        add(selectedVariableNote)
+        add(operation)
+        add(operand)
+        add(operandNote)
+        if (result.isNotBlank()) {
+            add("=")
+            add(result)
+        }
+    }.filter(String::isNotBlank).joinToString(" ")
 }
 
 @Composable

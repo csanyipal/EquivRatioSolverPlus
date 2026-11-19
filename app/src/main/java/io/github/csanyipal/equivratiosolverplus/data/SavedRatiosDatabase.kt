@@ -27,7 +27,8 @@ data class SavedRatio(
     val operationIndex: Int,
     val operationOperand: String,
     val operationResult: Double?,
-    val operationNote: String
+    val operationNote: String,
+    val operationDisplayText: String?
 )
 
 class SavedRatiosDatabase(context: Context) :
@@ -50,13 +51,20 @@ class SavedRatiosDatabase(context: Context) :
                 $COLUMN_OPERATION_INDEX INTEGER NOT NULL,
                 $COLUMN_OPERATION_OPERAND TEXT,
                 $COLUMN_OPERATION_RESULT REAL,
-                $COLUMN_OPERATION_NOTE TEXT
+                $COLUMN_OPERATION_NOTE TEXT,
+                $COLUMN_OPERATION_DISPLAY_TEXT TEXT
             )
             """.trimIndent()
         )
     }
 
-    override fun onUpgrade(database: SQLiteDatabase, oldVersion: Int, newVersion: Int) = Unit
+    override fun onUpgrade(database: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+        if (oldVersion < 2) {
+            database.execSQL(
+                "ALTER TABLE $TABLE_NAME ADD COLUMN $COLUMN_OPERATION_DISPLAY_TEXT TEXT"
+            )
+        }
+    }
 
     fun save(ratio: SavedRatio) {
         require(ratio.values.size == 4)
@@ -79,6 +87,8 @@ class SavedRatiosDatabase(context: Context) :
             ratio.operationResult?.let { put(COLUMN_OPERATION_RESULT, it) }
                 ?: putNull(COLUMN_OPERATION_RESULT)
             putOptional(COLUMN_OPERATION_NOTE, ratio.operationNote)
+            ratio.operationDisplayText?.let { put(COLUMN_OPERATION_DISPLAY_TEXT, it) }
+                ?: putNull(COLUMN_OPERATION_DISPLAY_TEXT)
         }
         val database = writableDatabase
         val updated = database.update(
@@ -134,7 +144,8 @@ class SavedRatiosDatabase(context: Context) :
                     ),
                     operationOperand = cursor.getNullableString(COLUMN_OPERATION_OPERAND).orEmpty(),
                     operationResult = cursor.getNullableString(COLUMN_OPERATION_RESULT)?.toDoubleOrNull(),
-                    operationNote = cursor.getNullableString(COLUMN_OPERATION_NOTE).orEmpty()
+                    operationNote = cursor.getNullableString(COLUMN_OPERATION_NOTE).orEmpty(),
+                    operationDisplayText = cursor.getNullableString(COLUMN_OPERATION_DISPLAY_TEXT)
                 )
             }
         }
@@ -152,7 +163,6 @@ class SavedRatiosDatabase(context: Context) :
 
     private companion object {
         const val DATABASE_NAME = "saved_ratios.db"
-        const val DATABASE_VERSION = 1
         const val TABLE_NAME = "saved_ratios"
         const val COLUMN_NAME = "name"
         const val COLUMN_INVERSE = "inverse"
@@ -168,5 +178,7 @@ class SavedRatiosDatabase(context: Context) :
         const val COLUMN_OPERATION_OPERAND = "operation_operand"
         const val COLUMN_OPERATION_RESULT = "operation_result"
         const val COLUMN_OPERATION_NOTE = "operation_note"
+        const val COLUMN_OPERATION_DISPLAY_TEXT = "operation_display_text"
+        const val DATABASE_VERSION = 2
     }
 }
