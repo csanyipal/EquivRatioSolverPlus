@@ -750,7 +750,6 @@ fun MainScreen() {
                     .fillMaxSize()
                     .padding(innerPadding)
                     .padding(16.dp),
-                inverse = inverseProportionality,
                 values = listOf(y1, x1, y2, x2),
                 decimalPlaces = decimalPlaces.toIntOrNull()?.coerceIn(0, 9) ?: 3,
                 yComments = yComments,
@@ -1376,7 +1375,6 @@ private enum class AngleUnit(val labelResource: Int) {
 @OptIn(ExperimentalFoundationApi::class, ExperimentalComposeUiApi::class)
 private fun OperationScreen(
     modifier: Modifier,
-    inverse: Boolean,
     values: List<String>,
     decimalPlaces: Int,
     yComments: String,
@@ -1394,8 +1392,6 @@ private fun OperationScreen(
     val noteFocusRequester = remember { FocusRequester() }
     val noteBringIntoViewRequester = remember { BringIntoViewRequester() }
     val operationScope = rememberCoroutineScope()
-    val directTitle = stringResource(R.string.direct_proportionality)
-    val inverseTitle = stringResource(R.string.inverse_proportionality)
     val sendLabel = stringResource(R.string.operation_send)
     val saveLabel = stringResource(R.string.operation_save)
     val savedMessage = stringResource(R.string.operation_saved)
@@ -1434,18 +1430,6 @@ private fun OperationScreen(
     var resultAndNote by rememberSaveable(generatedOperationText) {
         mutableStateOf(generatedOperationText)
     }
-    val report = buildOperationReport(
-        values = values,
-        yComments = yComments,
-        xComments = xComments,
-        variableIndex = variableIndex,
-        operation = operations[operationIndex],
-        operand = operand,
-        result = resultText,
-        note = note,
-        title = if (inverse) inverseTitle else directTitle
-    )
-
     Column(
         modifier = modifier
             .imePadding()
@@ -1590,7 +1574,7 @@ private fun OperationScreen(
                         Intent.createChooser(
                             Intent(Intent.ACTION_SEND).apply {
                                 type = "text/plain"
-                                putExtra(Intent.EXTRA_TEXT, report)
+                                putExtra(Intent.EXTRA_TEXT, resultAndNote)
                             },
                             sendLabel
                         )
@@ -1635,45 +1619,6 @@ private fun OperationScreen(
                     Text(saveLabel)
                 }
             }
-        }
-    }
-}
-
-private fun buildOperationReport(
-    values: List<String>,
-    yComments: String,
-    xComments: String,
-    variableIndex: Int,
-    operation: String,
-    operand: String,
-    result: String,
-    note: String,
-    title: String
-): String {
-    val labels = listOf("y₁", "x₁", "y₂", "x₂")
-    return buildString {
-        appendLine(title)
-        values.forEachIndexed { index, value ->
-            val variableNote = if (index == 0 || index == 2) yComments else xComments
-            append("${labels[index]} = $value")
-            if (variableNote.isNotBlank()) {
-                append("    ")
-                append(variableNote)
-            }
-            appendLine()
-        }
-        append(labels[variableIndex])
-        append(" = ")
-        append(values[variableIndex])
-        append(" ")
-        append(operation)
-        append(" ")
-        append(if (operand.isBlank()) "?" else operand)
-        append(" = ")
-        append(result)
-        if (note.isNotBlank()) {
-            append("    ")
-            append(note)
         }
     }
 }
