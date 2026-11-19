@@ -26,17 +26,22 @@ import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun attachBaseContext(newBase: Context) {
-        val languageTag = newBase.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE)
-            .getString(LANGUAGE_KEY, null)
-        if (languageTag == null) {
-            super.attachBaseContext(newBase)
-        } else {
-            val locale = Locale.forLanguageTag(languageTag)
-            Locale.setDefault(locale)
-            val configuration = Configuration(newBase.resources.configuration)
-            configuration.setLocales(LocaleList(locale))
-            super.attachBaseContext(newBase.createConfigurationContext(configuration))
+        val preferences = newBase.getSharedPreferences(PREFERENCES_NAME, MODE_PRIVATE)
+        val savedLanguage = preferences.getString(LANGUAGE_KEY, null)
+        val languageTag = savedLanguage?.takeIf { it == "en" || it == "hu" }
+            ?: newBase.resources.configuration.locales[0]
+            .language
+            .takeIf { it == "en" || it == "hu" }
+            ?: "en"
+        if (savedLanguage != languageTag) {
+            val saved = preferences.edit().putString(LANGUAGE_KEY, languageTag).commit()
+            check(saved) { "Could not persist the application language." }
         }
+        val locale = Locale.forLanguageTag(languageTag)
+        Locale.setDefault(locale)
+        val configuration = Configuration(newBase.resources.configuration)
+        configuration.setLocales(LocaleList(locale))
+        super.attachBaseContext(newBase.createConfigurationContext(configuration))
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
